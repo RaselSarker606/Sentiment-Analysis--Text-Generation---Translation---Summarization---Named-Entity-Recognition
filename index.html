@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NLP App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body style="background:black; color:white">
+    <div class="container mt-5">
+        <h1>NLP: Tasks Using Pipeline</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="user_input">Enter text:</label>
+                <textarea class="form-control" id="user_input" name="user_input" rows="4" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="task">Choose a task:</label>
+                <select class="form-control" id="task" name="task">
+                    <option value="sentiment">Sentiment Analysis</option>
+                    <option value="generation">Text Generation</option>
+                    <option value="translation">Translation</option>
+                    <option value="summarization">Summarization</option>
+                    <option value="named_entity_recognition">Named Entity Recognition</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        {% if sent %}
+        <div class="mt-4">
+            <h2>Sentiment analysis:</h2>
+            <p>{{ sent[0].label }}, Score: {{sent[0].score}}</p>
+        </div>
+        {% endif %}
+
+        {% if gen %}
+        <div class="mt-4">
+            <h2>Generated Text: </h2>
+            <p>{{gen[0].generated_text}}</p>
+        </div>
+        {% endif %}
+
+        {% if ner %}
+        <div class="mt-4">
+            <h2>NER</h2>
+            <p>group entity: {{ner[0].entity_group}}, score: {{ner[0].score}}, word: {{ner[0].word}}</p>
+        </div>
+        {% endif %}
+
+        {% if trans %}
+        <div class="mt-4">
+            <h2>translation_text</h2>
+            <p>{{trans[0].translation_text}}</p>
+        </div>
+        {% endif %}
+        {% if summ %}
+        <div class="mt-4">
+            <h2>summarization:</h2>
+            <p>{{summ[0].summary_text}}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
